@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicEye | Smart City Problem Detection</title>
+    <link rel="stylesheet" href="idea 3.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+    <a href="#home" class="logo">
+        <span class="logo-icon">👁</span>
+        <span>Civic<span>Eye</span></span>
+    </a>
+
+    <nav id="nav-links">
+        <a href="#home">Home</a>
+        <a href="#report">Report Problem</a>
+        <a href="#how">How It Works</a>
+        <a href="#dashboard">Dashboard</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <button class="login-btn">Login</button>
+        <button class="register-btn">Register</button>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">
+        ☰
+    </button>
+</header>
+
+<main>
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="badge">🚨 AI-Powered Civic Platform</div>
+            <h1>Make Your City <span>Better & Smarter.</span></h1>
+            <p>
+                Report city problems with a photo and location. 
+                CivicEye uses AI to detect, classify and prioritize 
+                infrastructure problems automatically.
+            </p>
+            <div class="hero-buttons">
+                <a href="#report" class="primary-btn">Report a Problem →</a>
+                <a href="#how" class="secondary-btn">How It Works</a>
+            </div>
+            <div class="hero-stats">
+                <div><strong>24/7</strong><small>Reporting</small></div>
+                <div><strong>AI</strong><small>Detection</small></div>
+                <div><strong>GPS</strong><small>Location</small></div>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="phone">
+                <div class="phone-top">
+                    <span>9:41</span>
+                    <span>● ● ●</span>
+                </div>
+                <div class="mini-header">
+                    <b>CivicEye</b>
+                    <span>🔔</span>
+                </div>
+                <div class="problem-image">🛣️</div>
+                <h3>Pothole Detected</h3>
+                <div class="severity high">🔴 HIGH SEVERITY</div>
+                <div class="mini-info">
+                    <p>📍 Location: GPS Detected</p>
+                    <p>⚠ Road Impact: Significant</p>
+                </div>
+                <button class="mini-button">View Report</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features">
+        <div class="section-heading">
+            <span>SMART CIVIC TECHNOLOGY</span>
+            <h2>One Platform.<br><strong>Smarter Cities.</strong></h2>
+            <p>CivicEye connects citizens and authorities using AI, computer vision, and smart prioritization.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon blue">📷</div>
+                <h3>AI Detection</h3>
+                <p>Automatically detect potholes, garbage, damaged roads, and other civic problems.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon green">📍</div>
+                <h3>GPS Location</h3>
+                <p>Every complaint can be tagged with its geographical location.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon orange">⚡</div>
+                <h3>Priority Engine</h3>
+                <p>Problems are ranked according to severity, reports, traffic, and unresolved time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon purple">🏢</div>
+                <h3>Department Routing</h3>
+                <p>Complaints can be routed to the appropriate authority or department.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= REPORT SECTION ================= -->
+    <section id="report" class="report-section">
+        <div class="report-container">
+            <div class="report-text">
+                <div class="small-title">REPORT A PROBLEM</div>
+                <h2>See a problem? <span>Report it.</span></h2>
+                <p>Help improve your city by reporting potholes, garbage, broken streetlights, damaged roads, and other infrastructure problems.</p>
+                <div class="report-points">
+                    <div><span>✓</span> Upload a photo</div>
+                    <div><span>✓</span> Add your location</div>
+                    <div><span>✓</span> AI analyzes the problem</div>
+                    <div><span>✓</span> Track complaint status</div>
+                </div>
+            </div>
+
+            <!-- Changed to a <form> element for proper submission handling -->
+            <form class="report-form" id="complaint-form">
+                <h3>Submit Complaint</h3>
+                <p class="form-subtitle">Tell us about the problem</p>
+
+                <label for="reporter-name">Your Name</label>
+                <input type="text" id="reporter-name" placeholder="Enter your name" required>
+
+                <label for="reporter-email">Email</label>
+                <input type="email" id="reporter-email" placeholder="Enter your email" required>
+
+                <label for="problem-type">Problem Type</label>
+                <select id="problem-type" required>
+                    <option value="">Select problem</option>
+                    <option value="pothole">Pothole</option>
+                    <option value="garbage">Garbage</option>
+                    <option value="streetlight">Broken Streetlight</option>
+                    <option value="road">Damaged Road</option>
+                    <option value="bin">Overflowing Bin</option>
+                    <option value="dumping">Illegal Dumping</option>
+                </select>
+
+                <label for="file-upload">Upload Image</label>
+                <div class="upload-box">
+                    <div class="upload-icon">📷</div>
+                    <p>Click to upload image</p>
+                    <small>JPG, PNG up to 10MB</small>
+                    <input type="file" id="file-upload" accept="image/png, image/jpeg" required>
+                </div>
+
+                <label for="location">Location</label>
+                <div class="location-box">
+                    <input type="text" id="location" placeholder="Enter location" required>
+                    <button type="button" id="gps-btn">📍 GPS</button>
+                </div>
+
+                <label for="description">Description</label>
+                <textarea id="description" rows="4" placeholder="Describe the problem..." required></textarea>
+
+                <button type="submit" class="submit-btn">Submit Complaint →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ================= AI PROCESS ================= -->
+    <section id="how" class="process-section">
+        <div class="section-heading">
+            <span>HOW CIVICEYE WORKS</span>
+            <h2>From Complaint to <strong>Solution.</strong></h2>
+        </div>
+        <div class="process">
+            <div class="process-card">
+                <div class="number">01</div>
+                <div class="process-icon">👤</div>
+                <h3>Citizen Reports</h3>
+                <p>Citizen uploads a photo and location of the civic problem.</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="process-card">
+                <div class="number">02</div>
+                <div class="process-icon">🤖</div>
+                <h3>AI Detection</h3>
+                <p>AI analyzes the uploaded image and detects the problem.</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="process-card">
+                <div class="number">03</div>
+                <div class="process-icon">⚡</div>
+                <h3>Priority Engine</h3>
+                <p>System calculates the priority based on multiple factors.</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="process-card">
+                <div class="number">04</div>
+                <div class="process-icon">🏢</div>
+                <h3>Authority</h3>
+                <p>Complaint is routed to the relevant department.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= AI DETECTION ================= -->
+    <section class="ai-section">
+        <div class="ai-container">
+            <div class="ai-image">
+                <div class="scan-card">
+                    <div class="scan-header">
+                        <span>AI ANALYSIS</span>
+                        <span class="live">● LIVE</span>
+                    </div>
+                    <div class="scan-image">🛣️</div>
+                    <div class="scan-line"></div>
+                    <div class="detection">
+                        <div>
+                            <small>DETECTED PROBLEM</small>
+                            <strong>Pothole</strong>
+                        </div>
+                        <div>
+                            <small>CONFIDENCE</small>
+                            <strong>96%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-content">
+                <span>COMPUTER VISION</span>
+                <h2>Let AI understand <strong>city problems.</strong></h2>
+                <p>CivicEye uses computer vision to identify common infrastructure problems from citizen uploaded images.</p>
+                <div class="detection-list">
+                    <div>✓ Potholes</div>
+                    <div>✓ Garbage</div>
+                    <div>✓ Broken streetlights</div>
+                    <div>✓ Damaged roads</div>
+                    <div>✓ Overflowing bins</div>
+                    <div>✓ Illegal dumping</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="section-heading">
+            <span>AUTHORITY DASHBOARD</span>
+            <h2>Everything in <strong>one place.</strong></h2>
+        </div>
+        <div class="dashboard">
+            <div class="dashboard-top">
+                <div>
+                    <h3>City Problem Overview</h3>
+                    <p>Current infrastructure reports</p>
+                </div>
+                <select class="filter-btn">
+                    <option>This Week</option>
+                    <option>This Month</option>
+                    <option>All Time</option>
+                </select>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon red">🚨</div>
+                    <div><small>Critical</small><h3>12</h3></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">⚠</div>
+                    <div><small>High</small><h3>28</h3></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon yellow">●</div>
+                    <div><small>Medium</small><h3>46</h3></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <div><small>Resolved</small><h3>91</h3></div>
+                </div>
+            </div>
+
+            <div class="complaint-table">
+                <div class="table-header">
+                    <span>Problem</span>
+                    <span>Location</span>
+                    <span>Priority</span>
+                    <span>Status</span>
+                </div>
+                <div class="table-row">
+                    <span>🛣️ Pothole</span>
+                    <span>Sector 45</span>
+                    <span class="priority critical">Critical</span>
+                    <span class="status pending">Pending</span>
+                </div>
+                <div class="table-row">
+                    <span>🗑️ Garbage</span>
+                    <span>Main Market</span>
+                    <span class="priority high-priority">High</span>
+                    <span class="status progress">In Progress</span>
+                </div>
+                <div class="table-row">
+                    <span>💡 Streetlight</span>
+                    <span>Sector 21</span>
+                    <span class="priority medium">Medium</span>
+                    <span class="status resolved">Resolved</span>
+                </div>
+                <div class="table-row">
+                    <span>🛣️ Damaged Road</span>
+                    <span>Phase 2</span>
+                    <span class="priority high-priority">High</span>
+                    <span class="status pending">Pending</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+        <div>
+            <span>HELP BUILD A BETTER CITY</span>
+            <h2>Your report can <strong>make a difference.</strong></h2>
+            <p>Report civic problems and help authorities understand what needs attention.</p>
+            <a href="#report" class="cta-button">Report a Problem →</a>
+        </div>
+    </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="#home" class="logo">
+                <span class="logo-icon">👁</span>
+                Civic<span>Eye</span>
+            </a>
+            <p>AI-powered civic technology for smarter and better cities.</p>
+        </div>
+        <div class="footer-column">
+            <h4>Platform</h4>
+            <a href="#report">Report Problem</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#how">How It Works</a>
+        </div>
+        <div class="footer-column">
+            <h4>Problems</h4>
+            <a href="#">Potholes</a>
+            <a href="#">Garbage</a>
+            <a href="#">Streetlights</a>
+            <a href="#">Damaged Roads</a>
+        </div>
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <a href="#">Support</a>
+            <a href="#">About CivicEye</a>
+            <a href="#">Feedback</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 CivicEye. AI-powered civic technology.</p>
+        <p>Built for smarter cities.</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
