@@ -1,0 +1,6 @@
+{
+  "name": "CivicEye - AI-Powered Civic Platform",
+  "description": "AI-powered civic issue detection, prioritization, and routing platform with secure authentication, automated duplicate detection, and real-time authority dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
