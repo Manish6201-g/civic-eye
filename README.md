@@ -9,7 +9,7 @@ This repository implements the complete **CivicEye Backend Project Plan** with a
 ## 1. Architecture Overview
 
 ```
-Frontend (React SPA / idea3.html)
+Frontend (React SPA / prototype/idea3.html)
         │  ▲
         │  │ Fetch / REST API (Bearer JWT)
         ▼  │
@@ -142,8 +142,9 @@ The project provides two connected frontend representations:
    - Interactive report submission with photo upload and AI scanner preview.
    - Dynamic Dashboard with live time-frame filter (`today`, `week`, `month`, `year`, `all`).
    - Detailed modal showing the transparent priority formula breakdown and authority status buttons.
-2. **Standalone Frontend Files (`idea3.html`, `idea3.css`, `idea3.js`)**:
-   - Fully intact vanilla HTML/CSS/JS frontend files.
+2. **Standalone Frontend Files (`prototype/idea3.html`, `prototype/idea3.css`, `prototype/idea3.js`)**:
+   - Fully intact vanilla HTML/CSS/JS frontend files located in the `prototype/` directory.
+   - Served at `http://localhost:3000/prototype/idea3.html` by the backend server.
    - `idea3.js` is wired directly to `fetch('/api/...')` endpoints with custom in-page toast notifications.
 
 ---

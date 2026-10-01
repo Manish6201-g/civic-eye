@@ -19,6 +19,9 @@ app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 // Mount CivicEye REST API
 app.use('/api', apiRouter);
 
+// Serve standalone prototype files
+app.use('/prototype', express.static(path.resolve(process.cwd(), 'prototype')));
+
 // Health check endpoint
 app.get('/api/health', (_req, res) => {
   res.json({
