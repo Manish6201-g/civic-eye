@@ -646,15 +646,20 @@ class Database {
     return this.data.notifications.filter(n => n.user_id === userId);
   }
 
-  public markNotificationAsRead(id: string): boolean {
-    const notif = this.data.notifications.find(n => n.id === id);
-    if (notif) {
-      notif.is_read = true;
-      this.commit();
-      return true;
-    }
-    return false;
+// Mark a notification as read only after verifying it belongs to the requesting user
+public markNotificationAsRead(id: string, userId: string): boolean {
+  const notif = this.data.notifications.find(
+    n => n.id === id && n.user_id === userId
+  );
+
+  if (notif) {
+    notif.is_read = true;
+    this.commit();
+    return true;
   }
+
+  return false;
+}
 
   // --- Verifications ---
   public addVerification(ver: CivicVerification): CivicVerification {

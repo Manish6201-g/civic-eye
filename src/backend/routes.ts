@@ -822,7 +822,10 @@ apiRouter.get('/notifications', optionalAuth, (req: AuthRequest, res: Response) 
   });
 });
 
-apiRouter.put('/notifications/:id/read', (req: AuthRequest, res: Response) => {
-  const success = db.markNotificationAsRead(req.params.id);
+// Mark a notification as read only for the authenticated notification owner
+apiRouter.put('/notifications/:id/read', requireAuth, (req: AuthRequest, res: Response) => {
+  const userId = req.user!.id;
+  const success = db.markNotificationAsRead(req.params.id, userId);
+
   return res.json({ success });
 });
