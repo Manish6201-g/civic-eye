@@ -108,10 +108,11 @@ export const CivicMap: React.FC<CivicMapProps> = ({
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
-    // Default center around issues or city coordinates
-    const defaultCenter: [number, number] = issues.length > 0 && issues[0].latitude
-      ? [issues[0].latitude, issues[0].longitude]
-      : [40.7128, -74.006];
+    // Default center around issues or New Delhi, India
+    const firstValid = issues.find(i => typeof i.latitude === 'number' && !isNaN(i.latitude));
+    const defaultCenter: [number, number] = firstValid
+      ? [firstValid.latitude, firstValid.longitude]
+      : [28.6139, 77.2090]; // New Delhi, India
 
     const map = L.map(mapContainerRef.current, {
       center: defaultCenter,
