@@ -28,6 +28,7 @@ import {
   Filter
 } from 'lucide-react';
 import { InteractiveBackground } from './components/InteractiveBackground';
+import { CivicMap } from './components/CivicMap';
 
 const API_BASE = '/api';
 
@@ -103,6 +104,7 @@ export default function App() {
   const [timeframe, setTimeframe] = useState<'today' | 'week' | 'month' | 'year' | 'all'>('week');
   const [timeframeOpen, setTimeframeOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'pending' | 'in_progress' | 'resolved'>('all');
+  const [dashboardView, setDashboardView] = useState<'map' | 'split' | 'list'>('split');
 
   // Report Form State
   const [reporterName, setReporterName] = useState('');
@@ -978,11 +980,52 @@ export default function App() {
                 <p className="text-xs text-slate-500">Live civic reports and priority queue</p>
               </div>
 
-              <div className="relative">
-                <button
-                  onClick={() => setTimeframeOpen(!timeframeOpen)}
-                  className="px-4 py-2 bg-white border border-slate-300 hover:border-blue-500 rounded-lg text-xs font-bold text-slate-700 flex items-center gap-2 shadow-sm"
-                >
+              <div className="flex flex-wrap items-center gap-3">
+                {/* View Switcher: Map, Split, Table */}
+                <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+                  <button
+                    onClick={() => setDashboardView('map')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                      dashboardView === 'map'
+                        ? 'bg-blue-600 text-white shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="GIS Map & Heatmap Focus"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>GIS Map</span>
+                  </button>
+                  <button
+                    onClick={() => setDashboardView('split')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                      dashboardView === 'split'
+                        ? 'bg-blue-600 text-white shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="Split Map & List View"
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Split</span>
+                  </button>
+                  <button
+                    onClick={() => setDashboardView('list')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all ${
+                      dashboardView === 'list'
+                        ? 'bg-blue-600 text-white shadow-sm'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                    title="Table / Queue List"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Table</span>
+                  </button>
+                </div>
+
+                <div className="relative">
+                  <button
+                    onClick={() => setTimeframeOpen(!timeframeOpen)}
+                    className="px-4 py-2 bg-white border border-slate-300 hover:border-blue-500 rounded-lg text-xs font-bold text-slate-700 flex items-center gap-2 shadow-sm"
+                  >
                   <Filter className="w-3.5 h-3.5 text-blue-600" />
                   <span>
                     {timeframe === 'today'
@@ -1024,6 +1067,7 @@ export default function App() {
                     ))}
                   </div>
                 )}
+                </div>
               </div>
             </div>
 
@@ -1070,8 +1114,21 @@ export default function App() {
               </div>
             </div>
 
-            {/* Filter Tabs */}
-            <div className="flex gap-2 mb-4 border-b border-slate-100 pb-2">
+            {/* Interactive GIS Map with Live Heatmap & Duplicate Radius */}
+            {(dashboardView === 'map' || dashboardView === 'split') && (
+              <div className="mb-8">
+                <CivicMap
+                  issues={issues}
+                  onSelectIssue={openIssueDetail}
+                  selectedIssueId={selectedIssueDetail?.issue?.id}
+                />
+              </div>
+            )}
+
+            {(dashboardView === 'list' || dashboardView === 'split') && (
+              <>
+                {/* Filter Tabs */}
+                <div className="flex gap-2 mb-4 border-b border-slate-100 pb-2">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
@@ -1210,8 +1267,10 @@ export default function App() {
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
+          </>
+        )}
+      </div>
+    </section>
 
         {/* ================= PRIORITY ENGINE FORMULA ================= */}
         <section className="py-20 px-6 lg:px-20 bg-blue-50/60">
