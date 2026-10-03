@@ -27,6 +27,7 @@ import {
   FileText,
   Filter
 } from 'lucide-react';
+import { InteractiveBackground } from './components/InteractiveBackground';
 
 const API_BASE = '/api';
 
@@ -481,7 +482,10 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f7f9fc] text-[#172033] flex flex-col font-sans">
+    <div className="relative min-h-screen bg-[#f7f9fc] text-[#172033] flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+      {/* Interactive Minimalistic Background Animation */}
+      <InteractiveBackground />
+
       {/* Toast Notifications */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none">
         {toasts.map(t => (
@@ -502,7 +506,7 @@ export default function App() {
       </div>
 
       {/* ================= NAVBAR ================= */}
-      <header className="sticky top-0 z-40 w-full h-[75px] bg-white border-b border-[#e8ecf2] px-6 lg:px-16 flex items-center justify-between">
+      <header className="sticky top-0 z-40 w-full h-[75px] bg-white/80 backdrop-blur-md border-b border-[#e8ecf2]/80 px-6 lg:px-16 flex items-center justify-between transition-colors">
         <div
           className="flex items-center gap-2.5 text-2xl font-extrabold cursor-pointer select-none"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -574,9 +578,9 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {/* ================= HERO ================= */}
-        <section id="home" className="py-16 md:py-24 px-6 lg:px-20 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 flex flex-col lg:flex-row items-center justify-between gap-14">
+        <section id="home" className="py-16 md:py-24 px-6 lg:px-20 bg-gradient-to-br from-blue-50/20 via-transparent to-slate-50/20 flex flex-col lg:flex-row items-center justify-between gap-14">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 text-blue-700 text-xs font-extrabold mb-6">
               <Flame className="w-3.5 h-3.5 text-blue-600" />
@@ -666,7 +670,7 @@ export default function App() {
         </section>
 
         {/* ================= FEATURES ================= */}
-        <section className="py-20 px-6 lg:px-20 bg-white">
+        <section className="py-20 px-6 lg:px-20 bg-white/40 backdrop-blur-sm">
           <div className="max-w-2xl mx-auto text-center mb-16">
             <span className="text-xs font-black tracking-widest text-blue-600 uppercase">
               SMART CIVIC TECHNOLOGY
@@ -680,7 +684,7 @@ export default function App() {
           </div>
 
           <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div className="p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-slate-200/80 hover:shadow-xl hover:border-blue-300 hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4">
                 📷
               </div>
@@ -690,7 +694,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div className="p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-slate-200/80 hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4">
                 📍
               </div>
@@ -700,7 +704,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div className="p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-slate-200/80 hover:shadow-xl hover:border-amber-300 hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-4">
                 ⚡
               </div>
@@ -710,7 +714,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div className="p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-slate-200/80 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-4">
                 🏢
               </div>
@@ -895,7 +899,7 @@ export default function App() {
         </section>
 
         {/* ================= AI PROCESS ================= */}
-        <section id="how" className="py-20 px-6 lg:px-20 bg-white">
+        <section id="how" className="py-20 px-6 lg:px-20 bg-white/40 backdrop-blur-sm">
           <div className="max-w-2xl mx-auto text-center mb-16">
             <span className="text-xs font-black tracking-widest text-blue-600 uppercase">
               HOW CIVICEYE WORKS
@@ -906,7 +910,7 @@ export default function App() {
           </div>
 
           <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center relative">
+            <div className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-200/80 text-center relative hover:shadow-xl hover:-translate-y-1 transition-all">
               <span className="absolute top-3 right-4 font-black text-slate-300 text-xs">01</span>
               <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mx-auto mb-4">
                 👤
@@ -917,7 +921,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center relative">
+            <div className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-200/80 text-center relative hover:shadow-xl hover:-translate-y-1 transition-all">
               <span className="absolute top-3 right-4 font-black text-slate-300 text-xs">02</span>
               <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mx-auto mb-4">
                 🤖
@@ -928,7 +932,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center relative">
+            <div className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-200/80 text-center relative hover:shadow-xl hover:-translate-y-1 transition-all">
               <span className="absolute top-3 right-4 font-black text-slate-300 text-xs">03</span>
               <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mx-auto mb-4">
                 ⚡
@@ -939,7 +943,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center relative">
+            <div className="p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-200/80 text-center relative hover:shadow-xl hover:-translate-y-1 transition-all">
               <span className="absolute top-3 right-4 font-black text-slate-300 text-xs">04</span>
               <div className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mx-auto mb-4">
                 🏢
