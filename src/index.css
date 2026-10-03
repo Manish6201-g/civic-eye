@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 /* CivicEye Design System & Theme Styles */
 @layer base {
@@ -23,4 +24,28 @@
 
 .scan-line-anim {
   animation: scanAnim 3s ease-in-out infinite alternate;
+}
+
+/* Custom Leaflet Map styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4;
+}
+.leaflet-container {
+  font-family: inherit;
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+.marker-pulse {
+  animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
